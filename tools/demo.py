@@ -18,7 +18,9 @@ from fast_rcnn.config import cfg
 from fast_rcnn.test import im_detect
 from fast_rcnn.nms_wrapper import nms
 from utils.timer import Timer
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt 
 import numpy as np
 import scipy.io as sio
 import caffe, os, sys, cv2
@@ -68,6 +70,7 @@ def vis_detections(im, class_name, dets, thresh=0.5):
     plt.axis('off')
     plt.tight_layout()
     plt.draw()
+    plt.savefig('/home/zhangdebin/output/result.png')
 
 def demo(net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
@@ -147,5 +150,4 @@ if __name__ == '__main__':
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
         print 'Demo for data/demo/{}'.format(im_name)
         demo(net, im_name)
-
-    plt.show()
+    #plt.show()
